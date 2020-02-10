@@ -1,0 +1,202 @@
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.25em 1.25em;
+  display: flex;
+  background: white;
+  z-index: 100;
+}
+
+.toolbar-title {
+  padding: 0.75em;
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.toolbar-title a {
+  color: #999;
+  text-decoration: none;
+}
+
+.toolbar-title a:hover {
+  color: #555;
+}
+
+.toolbar-action {
+  padding: 0.25em;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  outline: 0;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  white-space: nowrap;
+  background: transparent;
+  line-height: 1;
+  border: none;
+  padding: 0;
+}
+
+.button-icon {
+  padding: 0.5em;
+}
+
+.button-icon {
+  color: #999;
+}
+
+.button-icon:hover {
+  color: #555;
+}
+
+.button-icon .fas {
+  font-size: 1.25em;
+  width: 1.2em;
+  line-height: 1.2em;
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  min-width: 320px;
+  max-width: 90%;
+  max-height: 480px;
+  top: 100%;
+  right: 0;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  z-index: 10;
+  overflow-y: auto;
+  background: white;
+}
+
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu-item {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  color: #555;
+}
+
+.dropdown-menu-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+.dropdown-menu-item.active {
+  color: #3f51b5;
+}
+
+.dropdown-menu ol ol .dropdown-menu-item {
+  padding-left: 24px;
+}
+
+.content {
+  padding: 2em;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.paginator {
+}
+
+.paginator a {
+  padding: 32px;
+  color: #999;
+  text-decoration: none;
+}
+
+.paginator a .fas {
+  font-size: 1.25em;
+  width: 1.2em;
+  line-height: 1.2em;
+  text-align: center;
+}
+
+.paginator a:hover {
+  color: #555;
+}
+
+.paginator a.disabled {
+  visibility: hidden;
+}
+
+.paginator-prev {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 48px;
+  bottom: 0;
+  left: 0;
+}
+
+.paginator-next {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 48px;
+  bottom: 0;
+  right: 0;
+}
+
+.main {
+  margin-top: 56px;
+}
+
+@media (max-width: 992px) {
+  .paginator {
+    display: flex;
+  }
+
+  .paginator a {
+    padding: 1em;
+  }
+
+  .paginator-prev {
+    position: static;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .paginator-next {
+    position: static;
+    flex-grow: 1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .toolbar {
+    padding: 0.25em;
+  }
+
+  .content {
+    padding: 1em;
+  }
+
+  .paginator a {
+    padding: 0.25em;
+  }
+}
