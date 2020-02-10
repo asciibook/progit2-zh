@@ -1,0 +1,41 @@
+name: Build and Publish
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    container:
+      image: asciibook/asciibook:0.0.2-cjk-sc
+    steps:
+      - uses: actions/checkout@v2
+      - name: build book
+        run: |
+          asciibook build progit.asc
+      - uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: build
+
+  publish:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/download-artifact@v1
+        with:
+          name: build
+      - name: Publish to Github Pages
+        run: |
+          cd build/html
+          touch .nojekyll
+          git init
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add .
+          git commit -m 'asciibook build'
+          git push --force https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages
+          rm -fr .git
+          cd ../..
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
